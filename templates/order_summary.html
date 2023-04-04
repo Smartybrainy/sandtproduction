@@ -1,0 +1,75 @@
+{% extends 'templates/base.html' %}
+{% load item_cart_count %}
+{% block content %}
+<title>{% block title %}/order-summary{% endblock title %}</title>
+
+{% include 'templates/snippet/navbar.html' %}
+
+<div class="row mt-5 p-4">
+  <div>
+    <div class="card-header">
+      <h5>Cart ({{ request.user| cart_count}})</h5>
+    </div>
+  </div>
+  {% for order_item in order.items.all %}
+  <div class="col-8">
+    <!-- Card -->
+    <div class="card mb-3">
+      <span class="badge rounded-pill badge-notification bg-danger">{{ forloop.counter }}</span>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="{{ order_item.item.image.url }}" alt="Itam image" class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ order_item.item.title }}</h5>
+            <p class="card-text"><strong>Quantity</strong> x{{ order_item.quantity }}</p>
+            <p class="card-text">
+              <small class="text-muted">&#8358;{{ order_item.item.discount_price }}</small>
+              <br>
+              <del class="text-muted">&#8358;{{ order_item.item.price }}</del>
+              <span class="badge badge-primary">saving(&#8358;{{ order_item.get_item_amount_saved }})
+              </span>
+            </p>
+            {% if order_item.quantity > 1 %}
+            <a href="{{ order_item.item.get_remove_single_from_cart_url }}" class="btn btn-warning"
+              title="minus item"><i class="fa-solid fa-minus"></i>
+            </a>
+            {% else %}
+            <a href="{{ order_item.item.get_remove_single_from_cart_url }}" class="btn btn-danger"
+              title="delete item"><i class="fa-sharp fa-solid fa-trash"></i>
+            </a>
+            {% endif %}
+            <a href="{{ order_item.item.get_add_to_cart_url }}" class="btn btn-warning" title="add item"><i
+                class="fa-solid fa-plus"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="col-4">
+    <!-- summary card -->
+    <div class="card text-muted">
+      <div class="card-header">CART SUMMARY</div>
+      <div class="card-body">
+        <h5 class="card-title">Subtotal</h5>
+        <p class="card-text">&#8358;{{ order.get_order_total_price }}</p>
+        <small>Delivery fees not included.</small>
+        <a href="{% url 'snail:checkout' %}" class="btn btn-warning d-block">
+          CHECKOUT (&#8358;{{ order.get_order_total_price }})
+        </a>
+
+        <a href="{% url 'snail:home-page' %}" class="btn btn-primary d-block mt-2">CONTINUE SHOPPING</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+{% include 'templates/snippet/footer.html' %}
+{% endblock content %}

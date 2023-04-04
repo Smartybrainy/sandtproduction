@@ -1,0 +1,4 @@
+# ignore all files in .env file
+.env
+
+db.sqlite3
