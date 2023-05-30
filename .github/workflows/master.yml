@@ -17,4 +17,4 @@ jobs:
         server: ftp.sandtproduction.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /sandtproduction
+        server-dir: /sandtproduction/
