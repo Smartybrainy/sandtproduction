@@ -17,7 +17,7 @@
         <li class="nav-item acitve">
           <a class="nav-link text-white" href="#">All</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-white" href="#">Shirts</a>
         </li>
         <li class="nav-item">
@@ -25,13 +25,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Outwears</a>
-        </li>
-
+        </li> -->
       </ul>
 
       <!-- Search -->
-      <form class="w-auto py-1" style="max-width: 12rem">
-        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
+      <form class="w-auto py-1" style="max-width: 12rem" action="{% url 'snail:snail-search-item' %}" method="get">
+        <input type="search" name="qs" class="form-control rounded-0" placeholder="Search" aria-label="Search">
       </form>
 
     </div>

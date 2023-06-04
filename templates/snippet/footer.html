@@ -1,10 +1,53 @@
-<footer class="text-center text-white mt-4" style="background-color: #607D8B">
+{% block extra_head %}
+<style>
+  a {
+    color: white;
+  }
+</style>
+{% endblock extra_head %}
 
-  <hr class="text-dark">
+<footer class="text-center text-white mt-4" style="background-color: #607D8B">
+  <div class="row p-5 bg-secondary text-center">
+    <div class="col-md">
+      <div class="">
+        <p>
+          <!-- <a href="/account" title="/account">My Account</a> -->
+          <!-- <br> -->
+          <a href="mailto:press@shopmakari.com?subject=Makari Press Inquiries" target="_blank"
+            title="mailto:press@shopmakari.com?subject=Makari Press Inquiries">Press Inquiries<br>
+          </a>
+          <a href="#" title="Wholesale Application">Wholesale</a>
+          <br>
+          <a href="#" title="Store Locator">Shop Local</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="">
+        <p>
+          <a href="/contact/" title="Contact Makari">Contact Us</a>
+          <br>
+          <a href="#" title="General FAQ">General FAQ</a>
+          <br>
+          <!-- <a href="#" title="Shipping And Return Policy">Shipping &amp; Returns</a>
+        <br> -->
+          <a href="/contact/" title="Why Makari?">Why S&T Production?</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="footer-block__details-content rte">
+        <p>More<br>
+          <a href="{% url 'snail:order-summary' %}" title="/cart">View Your Cart</a>
+          <br>
+          <a href="/contact/privacy-policy" title="Privacy Policy">Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
-    <section class="mb-3">
-
+    <section class="mb-2">
       <!-- Facebook -->
       <a class="btn-link btn-floating btn-lg text-white" href="#!" role="button" data-mdb-ripple-color="dark"><i
           class="fab fa-facebook-f"></i></a>
@@ -28,11 +71,15 @@
       <a class="btn-link btn-floating btn-lg text-white" href="#!" role="button" data-mdb-ripple-color="dark"><i
           class="fab fa-github"></i></a>
     </section>
-  </div>
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); text-color: #E0E0E0">
-    © 2018 Copyright:
-    <a class="text-white" href="https://www.sandtproduction.com/">Sandtproduction.com</a>
+    <section>
+      {% include "templates/snippet/payment_icons.html" %}
+    </section>
+
+    <!-- Copyright  -->
+    <section class="p-3">
+      <small>© 2018 Copyright:</small>
+      <a class="text-white" href="https://www.sandtproduction.com/">Sandtproduction.com</a>
+    </section>
   </div>
 </footer>

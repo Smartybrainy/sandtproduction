@@ -12,6 +12,8 @@
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
   <title>Sandtproduction{% block title %} {% endblock title %}</title>
+  {% block extra_head %}
+  {% endblock extra_head %}
 </head>
 
 <body>
@@ -34,6 +36,9 @@
 
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+<!-- flutterwave  -->
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 
 {% block extra_script %}
 {% endblock extra_script %}

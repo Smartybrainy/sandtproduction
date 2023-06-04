@@ -20,7 +20,7 @@
         <div class="col-md-3">
           <img src="{{ order_item.item.image.url }}" alt="Itam image" class="img-fluid rounded-start" />
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <div class="card-body">
             <h5 class="card-title">{{ order_item.item.title }}</h5>
             <p class="card-text"><strong>Quantity</strong> x{{ order_item.quantity }}</p>
@@ -50,6 +50,11 @@
   </div>
   {% endfor %}
 
+  {% for order_item in order.items.all %}
+  {% empty %}
+  <marquee class="alert alert-info" style="width: 60%; margin:auto;">Your cart is empty. Nothing to display</marquee>
+  {% endfor %}
+
   <div class="col-4">
     <!-- summary card -->
     <div class="card text-muted">
@@ -71,5 +76,4 @@
 
 
 
-{% include 'templates/snippet/footer.html' %}
 {% endblock content %}

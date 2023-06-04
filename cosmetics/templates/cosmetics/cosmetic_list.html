@@ -1,0 +1,98 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<title>{% block title %}/cosmetics{% endblock title %}</title>
+
+{% include "templates/snippet/navbar.html" %}
+
+{% include "snail/snippet/snail_carousel.html" %}
+
+
+<main>
+  <div class="container">
+
+    {% include "cosmetics/snippet/category_search.html" %}
+
+    <!-- Products -->
+    <section>
+      <div class="text-center">
+        <div class="row">
+          {% for item in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+              <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                <img src="{{ item.image.url }}" class="w-100" />
+                <a href="{{ item.get_cosmetic_absolute_url }}">
+                  <div class="mask">
+                    <div class="d-flex justify-content-start align-items-end h-100">
+                      <h5><span class="badge bg-{{ item.get_label_display }} ms-2">NEW</span></h5>
+                    </div>
+                  </div>
+                  <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="card-body">
+                <a href="{{ item.get_cosmetic_absolute_url }}" class="text-reset">
+                  <h5 class="card-title mb-2">{{ item.title }}</h5>
+                </a>
+                <a href="{{ item.get_cosmetic_absolute_url }}" class="text-reset ">
+                  <p>{{ item.get_category_display }}</p>
+                </a>
+                <h6 class="mb-3 price">
+                  {% if item.discount_price %}
+                  &#8358;{{ item.discount_price }}
+                  {% endif %}
+                  <br>
+                  <del>
+                    {% if item.price %}
+                    &#8358;{{ item.price }}
+                    {% endif %}
+                  </del>
+                </h6>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="alert alert-info" style="width: 60%; margin:auto;">Opps! No item matches your search query.
+            <a href="{% url 'cosmetics:cosmetic-list' %}" class="badge badge-primary">Go back</a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <a href="{% url 'snail:home-page' %}" class="btn btn-secondary">Home page</a>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% endif %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+          </a>
+        </li>
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</main>
+
+{% include "templates/snippet/footer.html" %}
+
+{% endblock content %}

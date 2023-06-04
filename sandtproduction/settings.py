@@ -26,7 +26,7 @@ SECRET_KEY = config('APP_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sandtproduction.com', 'www.sandtproduction.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -47,10 +47,12 @@ THIRD_PARTY_APP = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_extensions'
 ]
 
 LOCAL_APP = [
-    'snail.apps.SnailConfig'
+    'snail.apps.SnailConfig',
+    'cosmetics',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APP + THIRD_PARTY_APP
@@ -155,5 +157,5 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-LOGIN_REDIRECT_URL = '/snail/'
-LOGOUT_REDIRECT_URL = '/snail/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

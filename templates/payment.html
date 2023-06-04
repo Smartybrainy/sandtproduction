@@ -1,7 +1,29 @@
 {% extends 'templates/base.html' %}
+{% load static %}
 
 {% block content %}
 <title>{% block title %}/payment{% endblock title %}</title>
+
+{% block extra_head %}
+<style>
+  .bs-center {
+    width: 50%;
+    margin: auto;
+  }
+
+  @media all and (orientation: landscape) {
+    .bs-center {
+      width: 50%;
+    }
+  }
+
+  @media all and (orientation: portrait) {
+    .bs-center {
+      width: 80%;
+    }
+  }
+</style>
+{% endblock extra_head %}
 
 {% include 'templates/snippet/navbar.html' %}
 
@@ -9,9 +31,30 @@
   <div class="container">
     <h2 class="my-5 text-center">Payment Form</h2>
 
+    <!-- card  -->
+    <div class="card">
+      <div class="card-body">
+        <div class="row bs-center">
+          <form method="post">
+            {% csrf_token %}
+            <!-- hiden forms  -->
+            <input type="hidden" name="amount" id="amount" value="{{ amount }}">
+            <input type="hidden" name="user" id="user" value="{{ user }}">
+            <input type="hidden" name="phone_number" id="phone_number" value="{{ phone_number }}">
+            <input type="hidden" name="email" id="email" value="{{ email }}">
+            <input type="hidden" name="IP" id="IP" value="{{ IP }}">
+
+            <button type="button" id="paymentBtn" class="btn btn-warning w-100 mt-3" onclick="makePayment()">Proceed to
+              make payment</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
   </div>
 </main>
-
-
-{% include 'templates/snippet/footer.html' %}
 {% endblock content %}
+
+{% block extra_script %}
+<script src="{% static 'flutterwave_payment.js' %}"></script>
+{% endblock extra_script %}
