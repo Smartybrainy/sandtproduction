@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Item, OrderItem, Order, Address, Payments, Snail
+from .models import Item, OrderItem, Order, Address, Payments, Snail, ClientRequest
 
 @admin.register(Snail)
 class SnailAdmin(admin.ModelAdmin):
@@ -27,6 +27,10 @@ class OrderAdmin(admin.ModelAdmin):
                     'ordered',
                     'ordered_date'
                     )
+    
+@admin.register(ClientRequest)
+class ClientRequestAdmin(admin.ModelAdmin):
+    list_display = ('email', 'how_can_we_help', 'content')
 
 
 admin.site.register(OrderItem, OrderItemAdmin)

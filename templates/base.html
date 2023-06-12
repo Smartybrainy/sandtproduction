@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+  <link rel="icon" href="{% static 'images/favicon.ico' %}">
   <title>Sandtproduction{% block title %} {% endblock title %}</title>
   {% block extra_head %}
   {% endblock extra_head %}
@@ -20,7 +22,7 @@
   {% if messages %}
   {% for message in messages %}
   <div class="alert alert-dismissible fade show alert-{{ message.tags }}" role="alert" id="customxD"
-    style="margin-top: 50px;">
+    style="margin-top: 60px;">
     {{ message }}
     <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
   </div>

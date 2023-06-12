@@ -11,7 +11,7 @@ from django.utils import timezone
 import random
 import string
 
-from .models import Item, OrderItem, Order, Address, Payments, Snail
+from .models import Item, OrderItem, Order, Address, Payments, Snail, ClientRequest
 from .forms import CheckoutForm, PaymentForm
 
 def generate_txRef():
@@ -307,3 +307,28 @@ def snail_search_item(request):
         )
     return render(request, 'snail/snail_list.html', {"object_list": item_search_result})
 
+
+class ContactView(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'templates/contact_page.html')
+    
+    def post(self, *args, **kwargs):
+        email = self.request.POST.get('email', '')
+        how_can_we_help = self.request.POST.get('howCanWeHelp', '')
+        content = self.request.POST.get('content', '')
+
+        client_request = ClientRequest()
+        client_request.email = email
+        client_request.how_can_we_help = how_can_we_help
+        client_request.content = content
+        client_request.save()
+        messages.info(self.request, "You request was submitted successfully.")
+        return redirect('snail:contact')
+    
+
+def about_view(request):
+    return render(request, 'templates/about_us.html')
+
+
+def privacy_policy(request):
+    return render(request, 'templates/privacy_policy.html')

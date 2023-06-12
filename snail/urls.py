@@ -9,7 +9,10 @@ from .views import (
     Checkout,
     Payment,
     VerifyPayment,
-    snail_search_item
+    snail_search_item,
+    ContactView,
+    about_view,
+    privacy_policy
     )
 
 app_name = "snail"
@@ -25,4 +28,7 @@ urlpatterns = [
     path('payment/<payment_option>/', Payment.as_view(), name="payment"),
     path('verify-payment/', VerifyPayment.as_view(), name="verify-payment"),
     path('snail-search-item/', snail_search_item, name="snail-search-item"),
+    path('contact/', ContactView.as_view(), name="contact"),
+    path('about/', about_view, name="about"),
+    path('privacy-policy/', privacy_policy, name="privacy-policy"),
 ]

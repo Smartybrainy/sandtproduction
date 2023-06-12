@@ -1,0 +1,73 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<title>{% block title %}/Contact{% endblock title %}</title>
+<style>
+  #my-map-canvas .text-marker {}
+
+  .map-generator {
+    max-width: 100%;
+    max-height: 100%;
+    background: none;
+  }
+</style>
+
+{% include "templates/snippet/navbar.html" %}
+
+
+<main style="margin-top: 100px;">
+  <div class="container">
+    <div style="text-decoration:none; overflow:hidden; max-width:100%; width:100%;height:300px;">
+      <div id="my-map-canvas" style="height:100%; width:100%;max-width:100%;">
+        <iframe style="height:100%;width:100%;border:0;" frameborder="0"
+          src="https://www.google.com/maps/embed/v1/search?q=ROI+Garden+Estate,+Chief+Chuks+Ikokwu+Street,+Lagos,+Nigeria&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+  <div class="container text-center p-5">
+    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+      Contact Support
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background: dodgerblue;">
+          <div class="text-white">
+            <h4>Address</h4>
+            <p>Official address: No 10 ROI GARDEN ESTATE CHIEF CHUKS STREET ARAROMI OFF ABRAHAM ADESANYA LEKKI PHASE 2
+              LAGOS STATE NIGERIA</p>
+            <hr>
+            <h4>Phone Support</h4>
+            <p>+2348132778948, +2347033280489</p>
+          </div>
+          <form action="{% url 'snail:contact' %}" id="enquiryForm" method="post">
+            {% csrf_token %}
+            <input type="email" name="email" id="email" class="form-control mb-3" placeholder="Email" required>
+            <input type="text" name="howCanWeHelp" id="howCanWeHelp" class="form-control mb-3"
+              placeholder="How can we help you?" required>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control"
+              placeholder="Additional request." required></textarea>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <button type="submit" form="enquiryForm" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "templates/snippet/footer.html" %}
+
+{% endblock content %}

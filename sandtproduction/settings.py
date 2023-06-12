@@ -26,7 +26,8 @@ SECRET_KEY = config('APP_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sandtproduction.com', 'www.sandtproduction.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['sandtproduction.com', 'www.sandtproduction.com',]
 
 
 # Application definition
@@ -59,6 +60,7 @@ INSTALLED_APPS = DEFAULT_APPS + LOCAL_APP + THIRD_PARTY_APP
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,6 +101,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sandwczg_sandtproduction',
+#         'USER': 'sandwczg_smartybrainy',
+#         'PASSWORD': config('DATABASE_PASSWORD'),
+#         'HOST': 'localhost',
+#         "PORT": '3306'
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -138,7 +151,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-# STATIC_ROOT = "example.com/assets"
+# STATIC_ROOT = "sandtproduction.com/smartybrainy/sandtproduction/assets"
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

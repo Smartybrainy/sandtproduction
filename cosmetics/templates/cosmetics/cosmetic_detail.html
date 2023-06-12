@@ -11,7 +11,9 @@
     <div class="row">
       <!--Grid column-->
       <div class="col-md-6 mb-4">
+        {% if object.image %}
         <img src="{{ object.image.url }}" class="img-fluid" alt="" />
+        {% endif %}
       </div>
       <!--Grid column-->
 

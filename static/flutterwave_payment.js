@@ -14,6 +14,7 @@ const makePayment = () => {
     currency: "NGN",
     payment_options: "card, mobilemoneyghana, ussd",
     redirect_url: "http://localhost:8000/verify-payment/",
+    // redirect_url: "/verify-payment/",
     customer: {
       email: email,
       phone_number: phonenumber,
